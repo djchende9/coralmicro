@@ -14,6 +14,9 @@ The `coralmicro` build system is based on CMake and includes support for Make
 and Ninja builds. After you build the included projects, you can flash
 them to your board with the included flashtool (`scripts/flashtool.py`).
 
+This course fork also provides a local keyword-spotting training notebook and
+supporting Python files for MF2143 Tutorial 2.
+
 ![main](https://github.com/google-coral/coralmicro/actions/workflows/ci.yml/badge.svg?event=push)
 ![arduino](https://github.com/google-coral/coralmicro/actions/workflows/arduino.yml/badge.svg?event=push)
 
@@ -31,27 +34,52 @@ them to your board with the included flashtool (`scripts/flashtool.py`).
 + [coralmicro examples](/examples/)
 
 
-
 ## Get the code
 
-1. Clone `coralmicro` and all submodules:
+If the Coral Micro SDK was installed during an earlier tutorial, do not clone
+another copy. Verify the existing checkout with:
 
-    ```bash
-    git clone --recurse-submodules -j8 https://github.com/SuranjanKTH/coralmicro
-    ```
+```bash
+cd <ROOT>/coral_dev_board/coralmicro
+git remote -v
+git status
+git submodule status
+```
 
-2. Install the required tools:
+Here, `<ROOT>` is a placeholder for the local course root and must be replaced
+with the actual path.
 
-    ```bash
-    cd coralmicro && bash setup.sh
-    ```
+For a new installation, clone this course fork and all submodules:
+
+```bash
+git clone --recurse-submodules -j8 https://github.com/djchende9/coralmicro.git
+```
+
+Install the required Coral Micro SDK tools:
+
+```bash
+cd coralmicro && bash setup.sh
+```
+
+
+## Tutorial 2 keyword-training files
+
+The course-specific training resources are:
+
++ [Keyword Spotting Model Training](train_keyword_complete.ipynb)
++ [TFLite conversion script](convert_to_tflite.py)
++ [Python requirements](requirements.txt)
+
+The notebook uses Python 3.11 and TensorFlow 2.20.0. For the course workflow,
+copy these files into the Tutorial 2 model-training workspace rather than
+creating another complete Coral SDK checkout.
 
 
 ## Build the code
 
 This builds everything in a folder called `build` (or you can specify a
-different path with `-b`, but if you do then you must also specify that path
-everytime you call `flashtool.py`):
+different path with `-b`, but if you do then you must specify that path
+every time you call `flashtool.py`):
 
 ```bash
 bash build.sh
@@ -84,13 +112,11 @@ coral.ai](https://coral.ai/docs/dev-board-micro/get-started/#serial-downloader).
 
 ## Update the repo
 
-Use the following commands to keep all coralmicro submodules in sync (rebasing your current branch):
+Use the following commands to keep all coralmicro submodules in sync (rebasing
+your current branch):
 
 ```bash
 git fetch origin
-
 git rebase origin/main
-
 git submodule update --init --recursive
 ```
-
