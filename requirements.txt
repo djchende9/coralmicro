@@ -14,6 +14,7 @@ tensorflow-io-gcs-filesystem>=0.37.0
 tensorflow-metadata>=1.17.0
 
 # ML utilities
+scikit-learn
 ml_dtypes==0.5.3
 absl-py==2.3.1
 opt_einsum==3.4.0
