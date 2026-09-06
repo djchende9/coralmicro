@@ -1,3 +1,6 @@
+# Ubuntu system prerequisite: sudo apt install -y ffmpeg
+# This provides both ffmpeg and ffprobe; pip cannot install these executables.
+
 # Core ML/DL frameworks
 tensorflow==2.20.0
 keras==3.12.0

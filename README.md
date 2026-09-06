@@ -74,6 +74,24 @@ The notebook uses Python 3.11 and TensorFlow 2.20.0. For the course workflow,
 copy these files into the Tutorial 2 model-training workspace rather than
 creating another complete Coral SDK checkout.
 
+On Ubuntu, install the system audio tools required while TFDS prepares WAV
+files:
+
+```bash
+sudo apt update
+sudo apt install -y ffmpeg
+command -v ffmpeg
+command -v ffprobe
+```
+
+Both verification commands must return paths, normally `/usr/bin/ffmpeg` and
+`/usr/bin/ffprobe`. These executables are system dependencies and cannot be
+installed through `requirements.txt`.
+
+The notebook uses a controlled CPU baseline by default. Set `USE_GPU = True`
+in the environment-check cell only on a workstation with a verified
+NVIDIA/CUDA configuration.
+
 
 ## Build the code
 
